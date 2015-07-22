@@ -1,0 +1,96 @@
+require-macros:
+   earl-mocha ->
+      describe, it, assert, asserts, before
+   ../index -> [%]
+
+require:
+   "@cycle/dom" as c
+   deep-diff as diff
+
+describe "HyperNode and the percent operator":
+   before:
+      @namespace = "http://www.w3.org/XML/1998/namespace"
+   it "returns a vnode":
+      node = div %
+      assert node.tag-name == .DIV
+   it "preserves namespace and tag":
+      node =
+         test %
+            namespace = @namespace
+      assert node.tag-name == .test
+   it "can have props":
+      node =
+         div %
+            foo = .bar
+      assert node.properties.foo == .bar
+   it "can have text":
+      node = div % .text
+      assert node.children[0].text == .text
+   it "can have a key":
+      node =
+         div %
+            key = .bar
+      assert node.key == .bar
+   it "can have an event":
+      node =
+         div %
+            "ev-foo" = .bar
+      assert not node.properties["ev-foo"] == undefined
+   it "creates input elements with value soft hook":
+      node =
+         input %
+            value = .text
+      assert typeof(node.properties.value) == .object
+      var elem = {=}
+      node.properties.value.hook(elem) with .value
+      assert elem.value == .text
+   it "can have a child":
+      node =
+         div %
+            span %
+      assert node.children[0].tag-name == .SPAN
+   it "can have children":
+      node =
+         div %
+            span %
+            span % .hello
+      asserts:
+         node.children[1].tag-name == .SPAN
+         node.children[1].children[0].text == .hello
+   it "with null":
+      node = div % null
+      node2 = div % {null, null}
+      asserts:
+         node.children.length == 0
+         node2.children.length == 0
+   it "with undefined":
+      node = div % undefined
+      node2 = div % {undefined, undefined}
+      asserts:
+         node.children.length == 0
+         node2.children.length == 0
+   it "with a foreign object":
+      var error-children = undefined
+      try:
+         div %
+            { foreign = .object }
+      catch e:
+         error-children = e
+      asserts:
+         not error-children == undefined
+         R"Unexpected virtual child"? error-children.message
+   it "can have a class":
+      node = div.foo %
+      assert node.properties.class-name == .foo
+   it "can have an id":
+      node = div[#foo] %
+      assert node.properties.id == .foo
+   it "can have an empty string":
+      node = "" %
+      assert node.tag-name == .DIV
+   it "can have two classes":
+      node = div.foo % class-name = .bar
+      assert node.properties.class-name == "foo bar"
+   it "can have two ids":
+      node = div[#foo] % id = .bar
+      assert node.properties.id == .bar
