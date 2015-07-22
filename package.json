@@ -6,7 +6,11 @@
   "scripts": {
     "test": "mocha --compilers eg:earlgrey/register"
   },
-  "author": "Jake Russo",
+  "author": {
+    "name": "Jake Russo",
+    "email": "madcap.russo@gmail.com",
+    "url": "http://github.com/MadcapJake"
+  },
   "license": "MIT",
   "dependencies": {
     "@cycle/dom": "^3.0.0"
