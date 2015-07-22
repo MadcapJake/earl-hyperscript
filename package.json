@@ -1,7 +1,7 @@
 {
   "name": "earl-hyperscript",
   "version": "0.1.0",
-  "description": "Earl Grey wrapper for @cycle-dom/h",
+  "description": "Earl Grey wrapper for Cycle.js/virtual-dom hyperscript DSL.",
   "main": "index.eg",
   "scripts": {
     "test": "mocha --compilers eg:earlgrey/register"
