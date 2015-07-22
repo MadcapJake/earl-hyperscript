@@ -94,3 +94,40 @@ describe "HyperNode and the percent operator":
    it "can have two ids":
       node = div[#foo] % id = .bar
       assert node.properties.id == .bar
+
+describe "% compared to @cycle/dom's h":
+   it "creates the same basic div":
+      node = div %
+      assert diff(c.h("div"), node) == undefined
+   it "creates the same nested p":
+      enode =
+         div %
+            p %
+      cnode = c.h("div", c.h("p"))
+      assert diff(enode, cnode) == undefined
+   it "creates the same deeply nested trees":
+      enode =
+         div %
+            p % "Some text"
+            b % "Bold text"
+            ul %
+               li % "Item 1"
+               li % "Item 2"
+      cnode =
+         c.h(.div) with {
+            c.h(.p, "Some text")
+            c.h(.b, "Bold text")
+            c.h(.ul) with {
+               c.h(.li, "Item 1")
+               c.h(.li, "Item 2")
+            }
+         }
+      assert diff(enode, cnode) == undefined
+   it "creates the same properties":
+      enode = span.foo.bar[#some-id] % "Some text"
+      cnode = c.h("span.foo.bar#some-id", "Some text")
+      assert diff(enode, cnode) == undefined
+   it "creates the same key":
+      enode = div % key = .some-key
+      cnode = c.h(.div) with { key = .some-key }
+      assert diff(enode, cnode) == undefined
