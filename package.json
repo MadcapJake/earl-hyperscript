@@ -1,0 +1,24 @@
+{
+  "name": "earl-hyperscript",
+  "version": "0.1.0",
+  "description": "Earl Grey wrapper for @cycle-dom/h",
+  "main": "index.eg",
+  "scripts": {
+    "test": "mocha --compilers eg:earlgrey/register"
+  },
+  "author": "Jake Russo",
+  "license": "MIT",
+  "dependencies": {
+    "@cycle/core": "^1.0.1",
+    "@cycle/dom": "^3.0.0"
+  },
+  "devDependencies": {
+    "earl-mocha": "0.0.2",
+    "earlgrey": "0.0.10",
+    "mocha": "^2.2.5"
+  },
+  "engines": {
+    "node": ">= 0.11.16",
+    "iojs": ">= 1.0.0"
+  }
+}

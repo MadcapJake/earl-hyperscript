@@ -1,0 +1,91 @@
+require-macros:
+   earl-mocha ->
+      describe, it, assert, before
+
+require:
+   "@cycle/dom" as c
+   ../index -> h
+
+describe "h":
+   before:
+      @namespace = "http://www.w3.org/XML/1998/namespace"
+   it "is a function":
+      assert typeof(h) == "function"
+   it "returns a vnode":
+      assert h(div %).tag-name == .DIV
+   it "defaults tag-name to uppercase":
+      assert h().tag-name == .DIV
+      assert h(div %).tag-name == .DIV
+   it "preserves tag-name case if namespace is given":
+      assert h(test % [namespace = @namespace]).tag-name == .test
+   it "has props":
+      node =
+         h: div %
+            foo = .bar
+      assert node.properties.foo == .bar
+   it "with text":
+      node = h: div % .text
+      assert node.children[0].text == .text
+   it "with a key":
+      node =
+         h: div %
+            key = .bar
+      assert node.key == .bar
+   it "with ev-":
+      node =
+         h: div %
+            "ev-foo" = .bar
+      assert not node.properties["ev-foo"] == undefined
+   it "creates input elements with value soft hook":
+      node =
+         h: input %
+            value = .text
+      assert typeof(node.properties.value) == .object
+      var elem = {=}
+      node.properties.value.hook(elem) with .value
+      assert elem.value == .text
+   it "with a child":
+      node =
+         h: div %
+            span %
+      assert node.children[0].tag-name == .SPAN
+   it "with children":
+      node =
+         h: div %
+            span %
+            span %
+      assert node.children[1].tag-name == .SPAN
+   it "with null":
+      node  = h: div % null
+      node2 = h: div % {null, null}
+      assert node.children.length == 0
+      assert node2.children.length == 0
+   it "with undefined":
+      node  = h: div % undefined
+      node2 = h: div % {undefined, undefined}
+      assert node.children.length == 0
+      assert node2.children.length == 0
+   it "with a foreign object":
+      ;; no error-single-child because eg doc syntax won't allow me to
+      ;; creat an enode that way.
+      var error-children = undefined
+      try:
+         h: div %
+            { foreign = .object }
+      catch e:
+         error-children = e
+
+      assert not error-children == undefined
+      assert R"Unexpected virtual child"? error-children.message
+   it "can have a class":
+      node = h: div.foo %
+      assert node.properties.class-name == .foo
+   it "can have an id":
+      node = h: div#foo %
+      assert node.properties.id == .foo
+
+
+
+describe "h compared to @cycle/dom's h":
+   it "creates the same basic div":
+      assert c.h("div") == h: div %

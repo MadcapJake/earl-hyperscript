@@ -1,0 +1,16 @@
+require:
+   "@cycle/dom" as cycle-dom
+
+provide: h
+
+h = match ->
+   String? s -> s
+   ENode? {tags => {}, => props, => children} and enode -> enode.to-string()
+   ENode? {=> tags, => props, => children} ->
+      cycle-dom.h(tags.join(""), props) with
+         children each match child ->
+            == null or == undefined -> continue
+            ENode? {=> tags, => props, => children} -> h(child)
+            else -> child
+
+   else -> h(div %)
