@@ -38,6 +38,18 @@ cycle.run(main) with {
 }
 ```
 
+With the `%` operator macro, you can avoid using `h` at all:
+```earl-grey
+require-macros:
+  earl-hyperscript -> [%]
+
+node =
+  div %
+    button.decrement % .Decrement
+    button.increment % .Increment
+    p % 'Counter: {count}'
+```
+
 # License
 
 [MIT][mit] © [Jake Russo][author] et [al][contributors]
