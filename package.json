@@ -27,5 +27,17 @@
   "engines": {
     "node": ">= 0.11.16",
     "iojs": ">= 1.0.0"
-  }
+  },
+  "keywords": [
+    "earlgrey",
+    "earl-grey",
+    "cyclejs",
+    "virtual-dom",
+    "virtual-hyperscript",
+    "hyperscript",
+    "virtual",
+    "dom",
+    "vtree",
+    "vdom"
+  ]
 }
