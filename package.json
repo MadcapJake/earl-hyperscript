@@ -1,6 +1,6 @@
 {
   "name": "earl-hyperscript",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Earl Grey wrapper for Cycle.js/virtual-dom hyperscript DSL.",
   "repository": "https://github.com/MadcapJake/earl-hyperscript",
   "main": "lib/index.js",
