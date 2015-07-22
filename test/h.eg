@@ -4,7 +4,7 @@ require-macros:
 
 require:
    "@cycle/dom" as c
-   ../index -> h
+   ../src/index -> h
    deep-diff as diff
 
 describe "h":

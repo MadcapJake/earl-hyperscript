@@ -3,9 +3,10 @@
   "version": "0.2.2",
   "description": "Earl Grey wrapper for Cycle.js/virtual-dom hyperscript DSL.",
   "repository": "https://github.com/MadcapJake/earl-hyperscript",
-  "main": "index.eg",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --compilers eg:earlgrey/register"
+    "test": "mocha --compilers eg:earlgrey/register",
+    "prepublish": "earl compile -5rvso lib/ src/"
   },
   "author": {
     "name": "Jake Russo",
