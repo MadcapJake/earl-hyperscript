@@ -1,7 +1,9 @@
 require:
    "@cycle/dom" as cycle-dom
 
-provide: h
+provide:
+   h
+   percent as [%]
 
 h = match ->
    String? s -> s
@@ -14,3 +16,10 @@ h = match ->
             else -> child
 
    else -> h(div %)
+
+HyperNode = (tags, props, Array! children) ->
+   cycle-dom.h(tags.join(""), props, children)
+
+macro{HyperNode} percent = #data{x, y} ->
+   let {=> HyperNode} = @deps
+   `[^x % ^y] where ENode = [^HyperNode]`

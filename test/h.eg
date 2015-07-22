@@ -130,3 +130,11 @@ describe "h compared to @cycle/dom's h":
       enode = h: div % key = .some-key
       cnode = c.h(.div) with { key = .some-key }
       assert diff(enode, cnode) == undefined
+
+describe "HyperNode and the percent operator":
+   before:
+      require: ../index -> [%]
+   it "returns a vnode":
+      node = div %
+      print node
+      assert node.tag-name == .DIV
