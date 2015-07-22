@@ -9,7 +9,6 @@
   "author": "Jake Russo",
   "license": "MIT",
   "dependencies": {
-    "@cycle/core": "^1.0.1",
     "@cycle/dom": "^3.0.0"
   },
   "peerDependencies": {
