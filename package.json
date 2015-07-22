@@ -12,7 +12,11 @@
     "@cycle/core": "^1.0.1",
     "@cycle/dom": "^3.0.0"
   },
+  "peerDependencies": {
+    "earlgrey": ">= 0.0.2"
+  },
   "devDependencies": {
+    "deep-diff": "^0.3.2",
     "earl-mocha": "0.0.2",
     "earlgrey": "0.0.10",
     "mocha": "^2.2.5"
