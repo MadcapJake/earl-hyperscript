@@ -1,5 +1,6 @@
 # Earl Hyperscript
 
+[![Earl Grey][earl-grey-badge]][earl-grey-link]
 [![npm package][npm-ver-link]][releases]
 [![][dl-badge]][npm-pkg-link]
 [![][mit-badge]][mit]
@@ -59,6 +60,8 @@ node =
 [author]:       http://github.com/MadcapJake
 [contributors]: https://github.com/MadcapJake/earl-hyperscript/graphs/contributors
 [releases]:     https://github.com/MadcapJake/earl-hyperscript/releases
+[earl-grey-badge]: https://img.shields.io/badge/Earl-Grey-lightgrey.svg?style=flat-square
+[earl-grey-link]:  https://breuleux.github.io/earl-grey/
 [mit-badge]: https://img.shields.io/badge/license-MIT-444444.svg?style=flat-square
 [npm-pkg-link]: https://www.npmjs.org/package/earl-hyperscript
 [npm-ver-link]: https://img.shields.io/npm/v/earl-hyperscript.svg?style=flat-square
