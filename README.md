@@ -5,7 +5,7 @@
 [![][dl-badge]][npm-pkg-link]
 [![][mit-badge]][mit]
 
-Converts [Earl Grey](https://breuleux.github.io/earl-grey/)'s document building syntax to vtree that works with [Cycle.js](http://cycle.js.org/).
+Converts Earl Grey's document building [syntax](https://breuleux.github.io/earl-grey/#documentbuilding) to vtree that works with [Cycle.js](http://cycle.js.org/).
 
 ## Example
 
